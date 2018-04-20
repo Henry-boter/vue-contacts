@@ -1,23 +1,21 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <c-header></c-header>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
+import CHeader from '@/components/CHeader/CHeader.vue'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    CHeader
+  }
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 100px;
-}
+<style lang="stylus" rel="stylesheet/stylus">
+  @import "common/stylus/reset.styl"
 </style>
