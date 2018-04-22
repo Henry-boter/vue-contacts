@@ -1,119 +1,30 @@
 <template>
- <scroll class="listview">
+ <scroll
+   :listen-scroll="listenScroll"
+   @scroll="scroll"
+   class="listview"
+   :data="data"
+   ref="listview">
    <ul>
-     <li  class="list-group">
-       <h2 class="list-group-title">热门</h2>
+     <li v-for="(group, index) in data" :key="index" class="list-group" ref="listGroup">
+       <h2 class="list-group-title">{{group.title}}</h2>
        <ul>
-         <li class="list-group-item">
-           <img class="avatar" src="https://y.gtimg.cn/music/photo_new/T001R300x300M000002J4UUk29y8BY.jpg?max_age=2592000" alt="">
-           <span class="name">薛之谦</span>
+         <li v-for="(item, Findex) in group.items" :key="Findex" class="list-group-item">
+           <img class="avatar" v-lazy="item.avatar" alt="">
+           <span class="name">{{item.name}}</span>
          </li>
-         <li class="list-group-item">
-           <img class="avatar" src="https://y.gtimg.cn/music/photo_new/T001R300x300M000002J4UUk29y8BY.jpg?max_age=2592000" alt="">
-           <span class="name">薛之谦</span>
-         </li>
-         <li class="list-group-item">
-           <img class="avatar" src="https://y.gtimg.cn/music/photo_new/T001R300x300M000002J4UUk29y8BY.jpg?max_age=2592000" alt="">
-           <span class="name">薛之谦</span>
-         </li>
-         <li class="list-group-item">
-           <img class="avatar" src="https://y.gtimg.cn/music/photo_new/T001R300x300M000002J4UUk29y8BY.jpg?max_age=2592000" alt="">
-           <span class="name">薛之谦</span>
-         </li>
-         <li class="list-group-item">
-           <img class="avatar" src="https://y.gtimg.cn/music/photo_new/T001R300x300M000002J4UUk29y8BY.jpg?max_age=2592000" alt="">
-           <span class="name">薛之谦</span>
-         </li>
-         <li class="list-group-item">
-           <img class="avatar" src="https://y.gtimg.cn/music/photo_new/T001R300x300M000002J4UUk29y8BY.jpg?max_age=2592000" alt="">
-           <span class="name">薛之谦</span>
-         </li>
-         <li class="list-group-item">
-           <img class="avatar" src="https://y.gtimg.cn/music/photo_new/T001R300x300M000002J4UUk29y8BY.jpg?max_age=2592000" alt="">
-           <span class="name">薛之谦</span>
-         </li>
-         <li class="list-group-item">
-           <img class="avatar" src="https://y.gtimg.cn/music/photo_new/T001R300x300M000002J4UUk29y8BY.jpg?max_age=2592000" alt="">
-           <span class="name">薛之谦</span>
-         </li>
-         <li class="list-group-item">
-           <img class="avatar" src="https://y.gtimg.cn/music/photo_new/T001R300x300M000002J4UUk29y8BY.jpg?max_age=2592000" alt="">
-           <span class="name">薛之谦</span>
-         </li>
-         <li class="list-group-item">
-           <img class="avatar" src="https://y.gtimg.cn/music/photo_new/T001R300x300M000002J4UUk29y8BY.jpg?max_age=2592000" alt="">
-           <span class="name">薛之谦</span>
-         </li>
-         <li class="list-group-item">
-           <img class="avatar" src="https://y.gtimg.cn/music/photo_new/T001R300x300M000002J4UUk29y8BY.jpg?max_age=2592000" alt="">
-           <span class="name">薛之谦</span>
-         </li>
-         <li class="list-group-item">
-           <img class="avatar" src="https://y.gtimg.cn/music/photo_new/T001R300x300M000002J4UUk29y8BY.jpg?max_age=2592000" alt="">
-           <span class="name">薛之谦</span>
-         </li>
-         <li class="list-group-item">
-           <img class="avatar" src="https://y.gtimg.cn/music/photo_new/T001R300x300M000002J4UUk29y8BY.jpg?max_age=2592000" alt="">
-           <span class="name">薛之谦</span>
-         </li>
-         <li class="list-group-item">
-           <img class="avatar" src="https://y.gtimg.cn/music/photo_new/T001R300x300M000002J4UUk29y8BY.jpg?max_age=2592000" alt="">
-           <span class="name">薛之谦</span>
-         </li>
-         <li class="list-group-item">
-           <img class="avatar" src="https://y.gtimg.cn/music/photo_new/T001R300x300M000002J4UUk29y8BY.jpg?max_age=2592000" alt="">
-           <span class="name">薛之谦</span>
-         </li>
-         <li class="list-group-item">
-           <img class="avatar" src="https://y.gtimg.cn/music/photo_new/T001R300x300M000002J4UUk29y8BY.jpg?max_age=2592000" alt="">
-           <span class="name">薛之谦</span>
-         </li>
-         <li class="list-group-item">
-         <img class="avatar" src="https://y.gtimg.cn/music/photo_new/T001R300x300M000002J4UUk29y8BY.jpg?max_age=2592000" alt="">
-         <span class="name">薛之谦</span>
-       </li>
-         <li class="list-group-item">
-           <img class="avatar" src="https://y.gtimg.cn/music/photo_new/T001R300x300M000002J4UUk29y8BY.jpg?max_age=2592000" alt="">
-           <span class="name">薛之谦</span>
-         </li>
-         <li class="list-group-item">
-           <img class="avatar" src="https://y.gtimg.cn/music/photo_new/T001R300x300M000002J4UUk29y8BY.jpg?max_age=2592000" alt="">
-           <span class="name">薛之谦</span>
-         </li>
-         <li class="list-group-item">
-           <img class="avatar" src="https://y.gtimg.cn/music/photo_new/T001R300x300M000002J4UUk29y8BY.jpg?max_age=2592000" alt="">
-           <span class="name">薛之谦</span>
-         </li>
-         <li class="list-group-item">
-           <img class="avatar" src="https://y.gtimg.cn/music/photo_new/T001R300x300M000002J4UUk29y8BY.jpg?max_age=2592000" alt="">
-           <span class="name">薛之谦</span>
-         </li>
-         <li class="list-group-item">
-         <img class="avatar" src="https://y.gtimg.cn/music/photo_new/T001R300x300M000002J4UUk29y8BY.jpg?max_age=2592000" alt="">
-         <span class="name">薛之谦</span>
-       </li>
-         <li class="list-group-item">
-           <img class="avatar" src="https://y.gtimg.cn/music/photo_new/T001R300x300M000002J4UUk29y8BY.jpg?max_age=2592000" alt="">
-           <span class="name">薛之谦</span>
-         </li>
-         <li class="list-group-item">
-           <img class="avatar" src="https://y.gtimg.cn/music/photo_new/T001R300x300M000002J4UUk29y8BY.jpg?max_age=2592000" alt="">
-           <span class="name">薛之谦</span>
-         </li>
-         <li class="list-group-item">
-         <img class="avatar" src="https://y.gtimg.cn/music/photo_new/T001R300x300M000002J4UUk29y8BY.jpg?max_age=2592000" alt="">
-         <span class="name">薛之谦</span>
-       </li>
        </ul>
      </li>
    </ul>
-   <div class="list-shortcut">
+   <div class="list-shortcut"
+        @touchstart="onShortcutTouchStart"
+        @touchmove.stop.prevent="onShortcutTouchMove">
      <ul>
-       <li class="item current">热</li>
-       <li class="item">A</li>
-       <li class="item">B</li>
-       <li class="item">C</li>
-       <li class="item">D</li>
+       <li v-for="(item, index) in shortcutList"
+           :key="index"
+           :data-index="index"
+           class="item">{{item}}</li>
+       <li class="item current">A</li>
      </ul>
    </div>
    <div class="list-fixed" ref="fixed">
@@ -124,14 +35,84 @@
 
 <script>
 import Scroll from '@/base/scroll/scroll'
+
+const ANCHOR_HEIGHT = 18
+
 export default {
-  name: 'hello',
+  props: {
+    data: {
+      type: Array
+    }
+  },
   components: {
     Scroll
   },
   data () {
     return {
-      msg: 'ListView'
+      msg: 'ListView',
+      scrollY: -1,
+      currentIndex: 0
+    }
+  },
+  watch: {
+    data () {
+      setTimeout(() => {
+        this._calculateHeight()
+      }, 20)
+    }
+  },
+  created () {
+    this.touch = {}
+    this.listenScroll = true
+  },
+  computed: {
+    shortcutList () {
+      return this.data.map((group) => {
+        return group.title.substr(0, 1)
+      })
+    }
+  },
+  methods: {
+    //  获取dom自定义属性
+    getData (el, name, val) {
+      const prefix = 'data-'
+      if (val) {
+        return el.setAttribute(prefix + name, val)
+      }
+      return el.getAttribute(prefix + name)
+    },
+    onShortcutTouchStart (e) {
+      let anchorIndex = this.getData(e.target, 'index')
+      let firstTouch = e.touches[0]
+      this.touch.y1 = firstTouch.pageY
+      // 获取touchStart的位置
+      this.touch.anchorIndex = anchorIndex
+      this._scrollTo(anchorIndex)
+    },
+    //  触摸右边字母
+    onShortcutTouchMove (e) {
+      let firstTouch = e.touches[0]
+      this.touch.y2 = firstTouch.pageY
+      let delta = (this.touch.y2 - this.touch.y1) / ANCHOR_HEIGHT | 0
+      let anchorIndex = parseInt(this.touch.anchorIndex) + delta
+      this._scrollTo(anchorIndex)
+    },
+    scroll (pos) {
+      this.scrollY = pos.y
+    },
+    _calculateHeight () {
+      this.listHeight = []
+      const list = this.$refs.listGroup
+      let height = 0
+      this.listHeight.push(height)
+      for (let i = 0; i < list.length; i++) {
+        let item = list[i]
+        height += item.clientHeight
+        this.listHeight.push(height)
+      }
+    },
+    _scrollTo (index) {
+      this.$refs.listview.scrollToElement(this.$refs.listGroup[index], 0)
     }
   }
 }

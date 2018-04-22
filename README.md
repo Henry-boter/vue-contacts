@@ -25,3 +25,10 @@ npm test
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+技术栈
+css预处理stylus
+前端路由vue-router
+页面滚动插件Better-scroll
+图片懒加载vue-lazy
+

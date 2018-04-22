@@ -1,6 +1,6 @@
 <template>
   <div class="contacts">
-    <list-view ref="list"></list-view>
+    <list-view ref="list" :data="singers"></list-view>
   </div>
 </template>
 
@@ -26,8 +26,7 @@ export default {
   },
   methods: {
     _getSingerList () {
-      this.singers = singer.data.list
-      console.log(this.singers)
+      this.singers = this._normalizesinger(singer.data.list)
     },
     _normalizesinger (list) {
       let map = {
@@ -52,8 +51,26 @@ export default {
           }
         }
         map[key].items.push({
+          id: item.Fsinger_mid,
+          name: item.Fsinger_name,
+          avatar: `https://y.gtimg.cn/music/photo_new/T001R150x150M000${item.Fsinger_mid}.jpg?max_age=2592000`
         })
       })
+      //  为了得到有序列表，我们需要处理map
+      let ret = []
+      let hot = []
+      for (let key in map) {
+        let val = map[key]
+        if (val.title.match(/[a-zA-Z]/)) {
+          ret.push(val)
+        } else if (val.title === HOT_NAME) {
+          hot.push(val)
+        }
+      }
+      ret.sort((a, b) => {
+        return a.title.charCodeAt(0) - b.title.charCodeAt(0)
+      })
+      return hot.concat(ret)
     }
   }
 }
