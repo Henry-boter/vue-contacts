@@ -2,6 +2,7 @@
  <scroll
    :listen-scroll="listenScroll"
    @scroll="scroll"
+   :probeType="probeType"
    class="listview"
    :data="data"
    ref="listview">
@@ -23,8 +24,9 @@
        <li v-for="(item, index) in shortcutList"
            :key="index"
            :data-index="index"
+           :class="{'current':currentIndex===index}"
            class="item">{{item}}</li>
-       <li class="item current">A</li>
+       <!--<li class="item current">A</li>-->
      </ul>
    </div>
    <div class="list-fixed" ref="fixed">
@@ -49,7 +51,6 @@ export default {
   },
   data () {
     return {
-      msg: 'ListView',
       scrollY: -1,
       currentIndex: 0
     }
@@ -59,11 +60,37 @@ export default {
       setTimeout(() => {
         this._calculateHeight()
       }, 20)
+    },
+    scrollY (newY) {
+      const listHeight = this.listHeight
+      // 当滚动到顶部，newY>0
+      if (newY > 0) {
+        this.currentIndex = 0
+        return
+      }
+      // 在中间部分滚动
+      for (let i = 0; i < listHeight.length - 1; i++) {
+        let height1 = listHeight[i]
+        let height2 = listHeight[i + 1]
+        if (-newY >= height1 && -newY < height2) {
+          this.currentIndex = i
+          this.diff = height2 + newY
+          return
+        }
+      }
+      console.log(listHeight.length)
+      // 当滚动到底部，且-newY大于最后一个元素的上限
+      this.currentIndex = listHeight.length - 2
     }
   },
   created () {
     this.touch = {}
     this.listenScroll = true
+    this.listHeight = []
+    this.probeType = 3
+    setTimeout(() => {
+      this._calculateHeight()
+    }, 20)
   },
   computed: {
     shortcutList () {
@@ -100,6 +127,7 @@ export default {
     scroll (pos) {
       this.scrollY = pos.y
     },
+    //  计算总高度
     _calculateHeight () {
       this.listHeight = []
       const list = this.$refs.listGroup
@@ -110,6 +138,7 @@ export default {
         height += item.clientHeight
         this.listHeight.push(height)
       }
+      console.log(this.listHeight)
     },
     _scrollTo (index) {
       this.$refs.listview.scrollToElement(this.$refs.listGroup[index], 0)
