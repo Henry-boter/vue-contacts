@@ -29,8 +29,8 @@
        <!--<li class="item current">A</li>-->
      </ul>
    </div>
-   <div class="list-fixed" ref="fixed">
-     <div class="fixed-title">A</div>
+   <div class="list-fixed" ref="fixed" v-show="fixedTitle">
+     <div class="fixed-title">{{fixedTitle}}</div>
    </div>
  </scroll>
 </template>
@@ -39,6 +39,7 @@
 import Scroll from '@/base/scroll/scroll'
 
 const ANCHOR_HEIGHT = 18
+const TITLE_HEIGHT = 30
 
 export default {
   props: {
@@ -52,7 +53,8 @@ export default {
   data () {
     return {
       scrollY: -1,
-      currentIndex: 0
+      currentIndex: 0,
+      diff: -1
     }
   },
   watch: {
@@ -81,6 +83,14 @@ export default {
       console.log(listHeight.length)
       // 当滚动到底部，且-newY大于最后一个元素的上限
       this.currentIndex = listHeight.length - 2
+    },
+    diff (newVal) {
+      let fixedTop = (newVal > 0 && newVal < TITLE_HEIGHT) ? newVal - TITLE_HEIGHT : 0
+      if (this.fixedTop === fixedTop) {
+        return
+      }
+      this.fixedTop = fixedTop
+      this.$refs.fixed.style.transform = `translate3d(0,${fixedTop}px,0)`
     }
   },
   created () {
@@ -97,6 +107,12 @@ export default {
       return this.data.map((group) => {
         return group.title.substr(0, 1)
       })
+    },
+    fixedTitle () {
+      if (this.scrollY > 0) {
+        return ''
+      }
+      return this.data[this.currentIndex] ? this.data[this.currentIndex].title : ''
     }
   },
   methods: {
@@ -141,6 +157,15 @@ export default {
       console.log(this.listHeight)
     },
     _scrollTo (index) {
+      if (!index && index !== 0) {
+        return
+      }
+      if (index < 0) {
+        index = 0
+      } else if (index > this.listHeight.length - 2) {
+        index = this.listHeight.length - 2
+      }
+      this.scrollY = -this.listHeight[index]
       this.$refs.listview.scrollToElement(this.$refs.listGroup[index], 0)
     }
   }
