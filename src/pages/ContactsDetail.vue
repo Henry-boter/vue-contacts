@@ -1,21 +1,29 @@
 <template>
   <transition name="slide">
     <div class="contacts-detail">
-      contacts-detail
+      {{singer}}
     </div>
   </transition>
 </template>
 <script>
+import {mapGetters} from 'vuex'
 export default {
   components: {},
   data () {
     return {}
   },
   filters: {},
+  created () {
+
+  },
   mounted () {
 
   },
-  computed: {},
+  computed: {
+    ...mapGetters([
+      'singer'
+    ])
+  },
   methods: {}
 }
 </script>

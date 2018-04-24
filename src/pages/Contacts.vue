@@ -8,6 +8,7 @@
 <script>
 import ListView from '@/base/listview/listview'
 import {singer} from '../data/singer'
+import {mapMutations} from 'vuex'
 
 const HOT_SINGER_LEN = 10
 const HOT_NAME = '热门'
@@ -27,10 +28,10 @@ export default {
   },
   methods: {
     selectSinger (singer) {
-      console.log(singer)
       this.$router.push({
         path: `/${singer.id}`
       })
+      this.setSinger(singer)
     },
     _getSingerList () {
       this.singers = this._normalizesinger(singer.data.list)
@@ -78,7 +79,10 @@ export default {
         return a.title.charCodeAt(0) - b.title.charCodeAt(0)
       })
       return hot.concat(ret)
-    }
+    },
+    ...mapMutations({
+      setSinger: 'SET_SINGER'
+    })
   }
 }
 </script>
