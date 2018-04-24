@@ -31,4 +31,5 @@ css预处理stylus
 前端路由vue-router
 页面滚动插件Better-scroll
 图片懒加载vue-lazy
+状态管理vuex
 
