@@ -10,7 +10,7 @@
      <li v-for="(group, index) in data" :key="index" class="list-group" ref="listGroup">
        <h2 class="list-group-title">{{group.title}}</h2>
        <ul>
-         <li v-for="(item, Findex) in group.items" :key="Findex" class="list-group-item">
+         <li @click="selcetItem(item)" v-for="(item, Findex) in group.items" :key="Findex" class="list-group-item">
            <img class="avatar" v-lazy="item.avatar" alt="">
            <span class="name">{{item.name}}</span>
          </li>
@@ -124,6 +124,10 @@ export default {
       }
       return el.getAttribute(prefix + name)
     },
+    //  点击某个歌手时触发
+    selcetItem (item) {
+      this.$emit('select', item)
+    },
     onShortcutTouchStart (e) {
       let anchorIndex = this.getData(e.target, 'index')
       let firstTouch = e.touches[0]
@@ -154,7 +158,6 @@ export default {
         height += item.clientHeight
         this.listHeight.push(height)
       }
-      console.log(this.listHeight)
     },
     _scrollTo (index) {
       if (!index && index !== 0) {

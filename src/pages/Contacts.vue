@@ -1,6 +1,7 @@
 <template>
   <div class="contacts">
-    <list-view ref="list" :data="singers"></list-view>
+    <list-view ref="list" :data="singers" @select="selectSinger"></list-view>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -25,6 +26,12 @@ export default {
     this._getSingerList()
   },
   methods: {
+    selectSinger (singer) {
+      console.log(singer)
+      this.$router.push({
+        path: `/${singer.id}`
+      })
+    },
     _getSingerList () {
       this.singers = this._normalizesinger(singer.data.list)
     },
