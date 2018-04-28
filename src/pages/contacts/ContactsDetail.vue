@@ -7,6 +7,7 @@
 </template>
 <script>
 import {mapGetters} from 'vuex'
+import {getSingerDetail} from '@/pages/contacts/contacts'
 export default {
   components: {},
   data () {
@@ -14,7 +15,7 @@ export default {
   },
   filters: {},
   created () {
-
+    this._getDetail()
   },
   mounted () {
 
@@ -24,7 +25,17 @@ export default {
       'singer'
     ])
   },
-  methods: {}
+  methods: {
+    _getDetail () {
+      if (!this.singer.id) {
+        this.$router.push('/')
+        return
+      }
+      getSingerDetail(this.singer.id).then((res) => {
+        console.log(res)
+      })
+    }
+  }
 }
 </script>
 
