@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Contacts from '@/pages/Contacts'
-import ContactsDetail from '@/pages/ContactsDetail'
+import Contacts from '@/pages/contacts/Contacts'
+import ContactsDetail from '@/pages/contacts/ContactsDetail'
 
 Vue.use(Router)
 

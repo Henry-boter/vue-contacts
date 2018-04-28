@@ -7,7 +7,9 @@
 
 <script>
 import ListView from '@/base/listview/listview'
-import {singer} from '../data/singer'
+import {singer} from '../../data/singer'
+import {getSingerData} from './contacts'
+import {ERR_OK} from '@/common/js/config'
 import {mapMutations} from 'vuex'
 
 const HOT_SINGER_LEN = 10
@@ -20,19 +22,30 @@ export default {
   },
   data () {
     return {
-      singer: []
+      singer: [], //  静态的数据
+      singers: [] // 动态的数据
     }
   },
   created () {
-    this._getSingerList()
+    // this._getSingerList()静态数据
+    this._getSinger()
   },
   methods: {
+    //  数据请求调试（动态）
+    _getSinger () {
+      getSingerData().then((res) => {
+        if (res.code === ERR_OK) {
+          this.singers = this._normalizesinger(res.data.list)
+        }
+      })
+    },
     selectSinger (singer) {
       this.$router.push({
         path: `/${singer.id}`
       })
       this.setSinger(singer)
     },
+    //  静态数据
     _getSingerList () {
       this.singers = this._normalizesinger(singer.data.list)
     },

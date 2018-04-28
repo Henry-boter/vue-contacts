@@ -29,7 +29,7 @@ export default {
 </script>
 
 <style scoped="scoped" lang="stylus" rel="stylesheet/stylus">
-  @import "../common/stylus/variable.styl"
+  @import "../../common/stylus/variable.styl"
   .contacts-detail
     position fixed
     z-index 100
