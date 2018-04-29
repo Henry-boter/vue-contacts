@@ -1,17 +1,25 @@
 <template>
   <transition name="slide">
-    <div class="contacts-detail">
-      {{singer}}
-    </div>
+    <!--<div class="contacts-detail">-->
+      <!--{{singer}}-->
+    <!--</div>-->
+    <music-list></music-list>
   </transition>
 </template>
 <script>
+import MusicList from '@/components/music-list/MusicList'
 import {mapGetters} from 'vuex'
 import {getSingerDetail} from '@/pages/contacts/contacts'
+import {ERR_OK} from '@/common/js/config'
+import {createSong} from '@/common/js/song'
 export default {
-  components: {},
+  components: {
+    MusicList
+  },
   data () {
-    return {}
+    return {
+      song: []
+    }
   },
   filters: {},
   created () {
@@ -33,7 +41,21 @@ export default {
       }
       getSingerDetail(this.singer.id).then((res) => {
         console.log(res)
+        if (res.code === ERR_OK) {
+          this.songs = this._normalizeSongs(res.data.list)
+          console.log(this.songs)
+        }
       })
+    },
+    _normalizeSongs (list) {
+      let ret = []
+      list.forEach((item) => {
+        let {musicData} = item
+        if (musicData.songid && musicData.albummid) {
+          ret.push(createSong(musicData))
+        }
+      })
+      return ret
     }
   }
 }

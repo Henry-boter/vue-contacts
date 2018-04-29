@@ -80,7 +80,6 @@ export default {
           return
         }
       }
-      console.log(listHeight.length)
       // 当滚动到底部，且-newY大于最后一个元素的上限
       this.currentIndex = listHeight.length - 2
     },
