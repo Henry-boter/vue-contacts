@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <c-header></c-header>
+    <c-header v-show="isShowHeader"></c-header>
     <router-view></router-view>
   </div>
 </template>
@@ -12,6 +12,29 @@ export default {
   name: 'App',
   components: {
     CHeader
+  },
+  data () {
+    return {
+      isShowHeader: true
+    }
+  },
+  watch: {
+    '$route': {
+      handler: 'head',
+      immediate: true
+    }
+  },
+  created () {
+    this.head()
+  },
+  methods: {
+    head () {
+      if (this.$route.name === 'home') {
+        this.isShowHeader = false
+      } else {
+        this.isShowHeader = true
+      }
+    }
   }
 }
 </script>

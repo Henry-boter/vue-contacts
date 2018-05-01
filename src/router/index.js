@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Contacts from '../pages/contacts/contacts.vue'
+import Home from '@/pages/home/Home.vue'
 import ContactsDetail from '@/pages/contacts/ContactsDetail'
 
 Vue.use(Router)
@@ -8,7 +9,7 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/contacts',
       name: 'Contacts',
       component: Contacts,
       children: [
@@ -17,6 +18,11 @@ export default new Router({
           component: ContactsDetail
         }
       ]
+    },
+    {
+      path: '/',
+      name: 'home',
+      component: Home
     }
   ]
 })
