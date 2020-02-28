@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import Scroll from '@/base/scroll/scroll'
+import Scroll from '@/base/scroll/Scroll'
 
 const ANCHOR_HEIGHT = 18
 const TITLE_HEIGHT = 30

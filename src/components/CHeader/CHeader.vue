@@ -11,7 +11,7 @@ export default {
   },
   data () {
     return {
-      msg: 'vue-contacts'
+      msg: '全景图（横屏效果更好）'
     }
   }
 }

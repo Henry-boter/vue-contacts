@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Contacts from '../pages/contacts/contacts.vue'
+import Car from '../pages/car/Car.vue'
 import Home from '@/pages/home/Home.vue'
 import ContactsDetail from '@/pages/contacts/ContactsDetail'
 
@@ -18,6 +19,11 @@ export default new Router({
           component: ContactsDetail
         }
       ]
+    },
+    {
+      path: '/car',
+      name: 'car',
+      component: Car
     },
     {
       path: '/',

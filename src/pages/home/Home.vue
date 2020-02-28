@@ -4,6 +4,7 @@
     <h1>author: BOB</h1>
     <a class="link" href="https://github.com/Henry-boter/vue-contacts">GitHub</a>
     <router-link to="/contacts" tag="a" class="link">demo</router-link>
+    <router-link to="/car" tag="a" class="link">汽车全景</router-link>
     <h1>{{ msg }}</h1>
   </div>
 </template>

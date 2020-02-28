@@ -13,14 +13,17 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "babel-runtime": "^6.26.0",
     "better-scroll": "^1.10.0",
+    "jsonp": "^0.2.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
+    "three": "^0.113.2",
+    "three-css3drenderer": "^1.0.1",
+    "three-orbit-controls": "^82.1.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
-    "vuex":"^3.0.1",
-    "babel-runtime": "^6.26.0",
-    "jsonp": "^0.2.1"
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
